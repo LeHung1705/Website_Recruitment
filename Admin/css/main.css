@@ -2,13 +2,11 @@
     box-sizing: border-box;
 }
 body {
-    display: flex;
     margin: 0;
     padding: 0;
     font-family: 'Playfair Display', serif;
 }
 .sidebar {
-    margin-top: 50px;
     width: 300px;
     background-color: #111;
     color: #fff;
@@ -33,16 +31,49 @@ body {
     margin-right: 15px;
     font-size: 20px;
 }
-.header {
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    background-color: white;
+    border-bottom: 1px solid #ccc;
+    padding: 0 20px;
+    position: relative;
+}
+
+.header-top-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.header-top-right i{
+    font-size: 25px;
+}
+
+.user-name {
+    font-size: 14px;
+    color: #333;
+}
+
+footer {
+    background-color: #111;
+    color: white;
+    padding: 30px 100px;
+    bottom: 0;
     width: 100%;
-    background-color: #f4f4f4;
-    padding: 15px 30px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    gap: 50px;
 }
-   
-.header .user {
-    font-size: 16px;
-    color: #555;
+
+main {
+    display: flex;
+    gap: 20px;
 }
+
+
