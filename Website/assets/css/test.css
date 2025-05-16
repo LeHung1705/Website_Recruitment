@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.div-1 {
+    width: 300px;
+    height: 300px;
+    background-color: #971b1b;
+    position: fixed;
+    top: 60px;
+}
+
+.div-2 {
+    width: calc(100% - 300px);
+    height: 100vh;
+    background-color: #1b1b97;
+    position: relative;
+    left: 300px;
+    top: 60px;
+}
