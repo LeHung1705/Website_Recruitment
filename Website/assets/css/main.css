@@ -75,3 +75,14 @@ header {
 }
 
 
+footer {
+    background-color: #111;
+    color: white;
+    padding: 30px 100px;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
