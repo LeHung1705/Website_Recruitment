@@ -1,8 +1,12 @@
+.main-content {
+    width: 90%;
+}
+
 .main-content h2{
     padding: 10px 0;
 }
 table {
-    width: 127%;
+    width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
     font-family: Arial, sans-serif;
@@ -19,19 +23,18 @@ thead th {
 tbody td {
     padding: 12px;
     border-bottom: 1px solid #888;
-    vertical-align: top;
+    vertical-align: top;;
 }
 
 td a i {
     font-size: 24px;
     color: #000;
     display: block;
-    text-align: center;
+    text-align: left;
 }
 
-td:nth-child(3) {
-    text-align: center; /* căn giữa icon trong ô "File" */
-}
+/* td:nth-child(3) {
+    text-align: center; /* căn giữa icon trong ô "File" */ 
 
 tr:hover {
     background-color: #f9f9f9;
