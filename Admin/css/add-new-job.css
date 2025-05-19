@@ -20,6 +20,9 @@ h1 {
     font-weight: bold;
 }
 
+.banner {
+    margin-bottom: 30px;
+}
 
 .job-detail-form {
     display: flex;
