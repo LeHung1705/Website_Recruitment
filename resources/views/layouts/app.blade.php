@@ -8,7 +8,7 @@
 
     <title>{{ config('app.name', 'WebsiteTuyenDung') }}</title>
 
-    <link rel="stylesheet" href="/Website/assets/css/main.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css')}}">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link
       rel="stylesheet"
@@ -20,17 +20,23 @@
 <body>
     <header>
       <div class="header-left">
-        <img src="/Website/assets/images/LOGO.png" alt="logo" height="90%" />
+        <img src="{{ asset('assets/images/LOGO.png')}}" alt="logo" height="90%" />
         <span class="logo-name font-playfair-display" onclick="RedirectToHomePage()">TraiDepTuyenDung</span>
       </div>
+      @guest
       <div class="header-right">
-        <button class="btn-candidate header-right-item font-playfair-display">
-          Ứng viên
-        </button>
-        <button class="btn-employer header-right-item font-playfair-display">
-          Nhà tuyển dụng
-        </button>
+        <a href=" {{route('login')}} " class="btn-candidate header-right-item font-playfair-display">
+          Đăng Nhập
+        </a>
       </div>
+      @else
+      <div class="header-right">
+        <a style="background-color:black; text-decoration: none;"href="{{ Auth::user()->utype=='ADM' ? route('admin.index') : route('user.index')}}" class="btn-candidate header-right-item font-playfair-display">
+            <i class="bi bi-person-circle" style="font-size: 1.5rem;"></i>
+            <span style="padding: 10px; font-size:15px; white-space: nowrap;">{{ Auth::user()->name }}</span>
+        </a>
+      </div>
+      @endguest
     </header>
     <div class="container">
       <!-- code here -->
@@ -49,7 +55,7 @@
             <i class="bi bi-envelope">   Address: Khu phố 6, phường Linh Trung, Thủ Đức, TP Hồ Chí Minh</i>
         </div>
     </footer>
-    <script src="/Website/assets/js/main.js"></script>
+    <script src="{{ asset('assets/js/main.js')}}"></script>
     @stack('scripts')
 </body>
 </html>

@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 
 class AuthAdmin
@@ -24,13 +25,13 @@ class AuthAdmin
             }
             else
             {
-                session()->flush();
+                Session::flush();
                 return redirect()->route('login');
             }
         }
         else
         {
-            session()->flush();
+            Session::flush();
             return redirect()->route('login');
         }        
     }

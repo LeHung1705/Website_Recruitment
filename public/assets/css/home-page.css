@@ -1,0 +1,128 @@
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 3px;
+    margin-top: 10px;
+    height: 25px;
+    width: 80%;
+    border: solid 2px #2457A6;
+    border-radius: 25px;
+    gap: 5px;
+}
+
+
+.search-box input {
+    width: 97%;
+    height: 100%;
+    border: none;
+    border-left: #2457A6 solid 2px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.search-box input:focus {
+    outline: none;
+}
+
+
+
+.job-list-container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    
+    margin-top: 30px;
+    gap: 20px;
+    min-width: 750px;
+}
+
+.job-list-title {
+    font-size: 30px;
+}
+
+.job-list {
+    display: flex;
+    
+    justify-content: space-between;
+    
+}
+
+.job-list-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 300px;
+    width: 30%;
+    padding-top: 30px;
+    padding-bottom: 5px;
+    gap: 30px;
+    border-radius: 15px;
+    background-color: #EFEBEB;
+    cursor: pointer;
+}
+
+.job-list-item:hover {
+    border: #2457A6 solid 1px;
+}
+
+.company-name {
+    font-size: 20px;
+    font-weight: 600;
+    width: 80%;
+}
+
+.attribute {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 80%;
+}
+
+.attribute-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.attribute-item svg {
+    width: 20px;
+    height: 20px;
+}
+
+.countdown-timer {
+    text-align: right;
+    width: 90%;
+    border-top: #2457A6 solid 1px;
+    padding: 5px;
+    font-size: 14px;
+    color: #2457A6;
+}
+
+.btn-login-now {
+    background-color: #2457A6;
+    border: none;
+    cursor: pointer;
+    width: 300px;
+    height: 50px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.btn-login-now:hover {
+    background-color: #084aac;
+}

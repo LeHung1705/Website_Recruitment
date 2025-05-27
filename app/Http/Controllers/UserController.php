@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function account_dashboard()
+    public function index()
     {
-        return view("users.dashboard");
+        return view("user.index");
     }
 }

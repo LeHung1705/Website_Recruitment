@@ -1,0 +1,132 @@
+.job-list-container {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin: 20px 20px 20px 0; /* Adjusted margin to align left */
+    width: 100%; /* Ensure it fits within available space */
+}
+
+.job-list-title {
+    color: #000;
+    text-align: left; /* Changed to left alignment */
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-left: 0; /* Removed negative margin */
+}
+
+.job-table {
+    width: 100%; /* Changed to 100% to fit available space */
+    border-collapse: collapse;
+}
+
+.job-table th {
+    background-color: #f8f9fa;
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+}
+
+.job-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #dee2e6;
+    vertical-align: middle;
+}
+
+.job-table tr:last-child td {
+    border-bottom: none;
+}
+
+.job-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.status-approved {
+    color: #28a745;
+    font-weight: 500;
+}
+
+.status-rejected {
+    color: #dc3545;
+    font-weight: 500;
+}
+
+.status-pending {
+    color: #ffc107;
+    font-weight: 500;
+}
+
+.no-jobs {
+    text-align: center;
+    padding: 30px;
+    color: #6c757d;
+}
+
+.job-table thead th {
+    background-color: #c2c2c2;
+    color: #333;
+    padding: 12px 15px;
+    font-weight: 600;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Main content to align with sidebar */
+.main-content {
+    margin-left: 0; /* Match sidebar width */
+    flex: 1;
+    display: flex;
+    justify-content: flex-start; /* Align left */
+    align-items: flex-start; /* Align to top */
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+/* Media Queries for 15.6-inch screens (1366px and below) */
+@media (max-width: 1366px) {
+    .main-content {
+        margin-left: 0; /* Match adjusted sidebar width */
+        padding: 15px;
+    }
+
+    .job-list-container {
+        padding: 15px;
+        margin: 15px 15px 15px 0; /* Adjusted margin */
+    }
+
+    .job-list-title {
+        font-size: 20px; /* Slightly smaller but proportional */
+        margin-bottom: 20px;
+    }
+
+    .job-table th,
+    .job-table td {
+        padding: 10px 12px; /* Slightly reduced padding */
+        font-size: 14px; /* Slightly smaller font */
+    }
+}
+
+/* For smaller screens (1024px and below) */
+@media (max-width: 1024px) {
+    .main-content {
+        margin-left: 0; /* Match adjusted sidebar width */
+        padding: 10px;
+    }
+
+    .job-list-container {
+        padding: 10px;
+        margin: 10px 10px 10px 0; /* Adjusted margin */
+    }
+
+    .job-list-title {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .job-table th,
+    .job-table td {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+}

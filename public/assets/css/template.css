@@ -1,0 +1,163 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Playfair Display', serif;
+}
+
+.sidebar {
+    width: 300px;
+    background-color: #111;
+    color: #fff;
+    min-height: 100vh;
+    padding-top: 20px;
+    display: flex; /* Ensure vertical layout */
+    flex-direction: column; /* Keep items stacked vertically */
+}
+
+.sidebar a {
+    color: #fff;
+    padding: 15px 20px;
+    display: flex; /* Use flex for horizontal alignment */
+    align-items: center; /* Vertically center icon and text */
+    text-decoration: none;
+    font-size: 16px;
+    border-left: 4px solid transparent;
+    transition: background 0.3s, border-color 0.3s;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflow if any */
+    text-overflow: ellipsis; /* Add ellipsis if text overflows */
+}
+
+.sidebar a:hover {
+    background-color: #333;
+}
+
+.sidebar i {
+    margin-right: 15px; /* Ensure space between icon and text */
+    font-size: 20px;
+    flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    background-color: white;
+    border-bottom: 1px solid #ccc;
+    padding: 0 20px;
+    position: relative;
+}
+
+.header-top-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.header-top-right i {
+    font-size: 25px;
+}
+
+.user-name {
+    font-size: 14px;
+    color: #333;
+}
+
+footer {
+    background-color: #111;
+    color: white;
+    padding: 30px 20px; /* Adjusted padding */
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Adjusted gap */
+}
+
+main {
+    display: flex;
+    flex-direction: row; /* Keep horizontal layout */
+    gap: 20px;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 1366px) {
+    .sidebar {
+        max-width: 255px; /* Smaller sidebar */
+        flex-direction: column; /* Ensure vertical layout */
+    }
+
+    .sidebar a {
+        padding: 12px 15px; /* Adjusted padding */
+        font-size: 14px; /* Slightly smaller font */
+    }
+
+    .sidebar i {
+        font-size: 18px;
+        margin-right: 10px; /* Reduced margin */
+    }
+
+    footer {
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .header-top {
+        padding: 0 15px;
+    }
+
+    .logo img {
+        width: 18%; /* Slightly smaller logo */
+    }
+
+    .header-top-right i {
+        font-size: 22px;
+    }
+
+    .user-name {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 235px; /* Further reduce sidebar width */
+        flex-direction: column; /* Keep vertical layout */
+        min-height: 100vh;
+        padding-top: 10px;
+    }
+
+    main {
+        flex-direction: row; /* Maintain horizontal layout */
+        gap: 10px;
+    }
+
+    .sidebar a {
+        font-size: 13px; /* Further smaller font */
+        padding: 10px 12px;
+    }
+
+    .sidebar i {
+        font-size: 16px;
+        margin-right: 8px; /* Further reduced margin */
+    }
+
+    .logo img {
+        width: 15%; /* Further reduce logo size */
+    }
+
+    .header-top-right i {
+        font-size: 20px;
+    }
+
+    .user-name {
+        font-size: 12px;
+    }
+}
