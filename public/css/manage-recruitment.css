@@ -1,0 +1,72 @@
+.main-content {
+    width: 90%;
+}
+
+.main-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 98%;
+}
+
+.search-box {
+    display: flex;
+    border: #000 solid 1px;
+    position: relative;
+    border-radius: 5px;
+    background-color: #d9d9d9;
+}
+.search-box input[type="text"] {
+    width: 90%;
+    border: none;
+    border-radius: 5px;
+}
+
+.search-box input[type="text"]:focus {
+    outline: none;
+}
+.search-box i {
+    width: 10%;
+    position: absolute;
+    right: 0;
+    top: 60%;
+}
+
+.main-title h2{
+    padding: 10px 0;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+thead th {
+    background-color: #d9d9d9;
+    padding: 12px;
+    border-bottom: 2px solid black; /* viền xanh dương */
+    text-align: left;
+}
+
+tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #888;
+    vertical-align: top;;
+}
+
+td a i {
+    font-size: 24px;
+    color: #000;
+    display: block;
+    text-align: left;
+}
+
+/* td:nth-child(3) {
+    text-align: center; /* căn giữa icon trong ô "File" */ 
+
+tr:hover {
+    background-color: #f9f9f9;
+}
