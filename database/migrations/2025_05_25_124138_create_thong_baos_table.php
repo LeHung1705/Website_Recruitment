@@ -6,22 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
-        Schema::create('thong_baos', function (Blueprint $table) {
+        Schema::create('thongbao', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('nguoi_nhan_id')->constrained('users')->onDelete('cascade');
+            $table->text('noi_dung');
+            $table->enum('trang_thai', ['da_doc', 'chua_doc'])->default('chua_doc');
+            $table->dateTime('thoi_gian_gui');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('thong_baos');
+        Schema::dropIfExists('thongbao');
     }
 };

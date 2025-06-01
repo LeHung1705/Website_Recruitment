@@ -6,22 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
-        Schema::create('ket_qua_phong_vans', function (Blueprint $table) {
+        Schema::create('ketquaphongvan', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('phong_van_id')->constrained('phongvan')->onDelete('cascade');
+            $table->integer('diem_so');
+            $table->text('nhan_xet');
+            $table->enum('ket_qua', ['dau', 'rot'])->default('rot');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('ket_qua_phong_vans');
+        Schema::dropIfExists('ketquaphongvan');
     }
 };
