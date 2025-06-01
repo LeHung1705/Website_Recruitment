@@ -6,22 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
-        Schema::create('bai_kiem_tras', function (Blueprint $table) {
+        Schema::create('baikiemtra', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('nguoi_tao_id')->constrained('users')->onDelete('cascade');
+            $table->text('noi_dung');
+            $table->string('loai_bai');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('bai_kiem_tras');
+        Schema::dropIfExists('baikiemtra');
     }
 };

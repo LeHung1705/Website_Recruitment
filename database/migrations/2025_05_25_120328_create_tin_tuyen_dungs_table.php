@@ -9,10 +9,19 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('tin_tuyen_dungs', function (Blueprint $table) {
+        Schema::create('tintuyendung', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('nguoi_dang_id')->constrained('users')->onDelete('cascade'); 
+            $table->string('tieu_de');
+            $table->text('mo_ta');
+            $table->string('nganh_nghe');
+            $table->string('loai_cong_viec');
+            $table->string('dia_diem');
+            $table->decimal('luong', 15, 2);
+            $table->enum('trang_thai', ['da_phe_duyet', 'da_huy'])->default('da_phe_duyet');
+            $table->timestamp('ngay_dang')->useCurrent();
             $table->timestamps();
         });
     }
@@ -20,8 +29,8 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('tin_tuyen_dungs');
+        Schema::dropIfExists('tintuyendung');
     }
 };
