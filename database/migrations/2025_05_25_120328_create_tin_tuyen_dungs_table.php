@@ -22,7 +22,6 @@ return new class extends Migration
             $table->decimal('luong', 15, 2);
             $table->enum('trang_thai', ['da_phe_duyet', 'da_huy'])->default('da_phe_duyet');
             $table->timestamp('ngay_dang')->useCurrent();
-            $table->timestamps();
         });
     }
 
