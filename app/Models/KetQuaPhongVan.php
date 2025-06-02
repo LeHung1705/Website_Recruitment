@@ -14,5 +14,4 @@ class KetQuaPhongVan extends Model
     {
         return $this->belongsTo(Phongvan::class, 'phong_van_id');
     }
-
 }
