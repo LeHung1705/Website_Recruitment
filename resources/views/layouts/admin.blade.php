@@ -21,8 +21,8 @@
     <header>
         <div class = "header-top">
             <div class="logo">
-                <a href="{{ url('/') }}">
-                    <img style="width:20%" src="{{ asset('assets/images/LOGO.png') }}" alt="Logo" class="logo-img">
+                <a href="{{ url('/') }}" style="text-decoration: none; color: black; font-size: 20px; font-weight: bold; font-family: 'Playfair Display', serif;">
+                    <img style="width:20%;" src="{{ asset('assets/images/LOGO.png') }}" alt="Logo" class="logo-img">TraiDepTuyenDung
                 </a>
             </div>
             @guest
@@ -46,7 +46,7 @@
     <!-- NAVIGATION -->
     <main>
         <div class="sidebar">
-            <a href="#" class="nav-item nav-add-job active"><i class="bi bi-plus-square"></i> Thêm mới việc
+            <a href="{{route('admin.add_job_view')}}" class="nav-item nav-add-job active"><i class="bi bi-plus-square"></i> Thêm mới việc
                 làm</a>
             <a href="{{route('admin.jobs')}}" class="nav-item nav-manage-jobs"><i class="bi bi-briefcase"></i> Quản lý tin tuyển
                 dụng</a>
@@ -55,8 +55,14 @@
                 tra</a>
             <a href="#" class="nav-item nav-manage-interviews"><i class="bi bi-calendar"></i> Quản lý lịch phỏng
                 vấn</a>
+                <form method="POST" action="{{ route('logout') }}" class="nav-logout">
+                    @csrf
+                    <button type="submit" class="sidebar-btn">
+                        <i class="bi bi-box-arrow-right"></i> Đăng xuất
+                    </button>
+                </form>
+                
         </div>
-
 
         @yield('content')
     </main>

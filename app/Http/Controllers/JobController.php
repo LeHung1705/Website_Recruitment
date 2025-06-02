@@ -15,4 +15,35 @@ class JobController extends Controller
             ->get();
         return view('admin.jobs', compact('jobs'));
     }
+
+    public function add_job_view()
+    {
+        return view('admin.add-job');
+    }
+
+    public function add_job(Request $request)
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'tieu_de' => 'required|string|max:255',
+            'mo_ta' => 'required|string',
+            'nganh_nghe' => 'required|string|max:255',
+            'loai_cong_viec' => 'required|string|max:255',
+            'dia_diem' => 'required|string|max:255',
+            'luong' => 'required|numeric|min:0',
+        ]);
+
+        // Create new job posting
+        $job = new TinTuyenDung();
+        $job->nguoi_dang_id = Auth::id();
+        $job->tieu_de = $validatedData['tieu_de'];
+        $job->mo_ta = $validatedData['mo_ta'];
+        $job->nganh_nghe = $validatedData['nganh_nghe'];
+        $job->loai_cong_viec = $validatedData['loai_cong_viec'];
+        $job->dia_diem = $validatedData['dia_diem'];
+        $job->luong = $validatedData['luong'];
+        $job->save();
+
+        return redirect()->route('admin.jobs')->with('success', 'Đã thêm tin tuyển dụng thành công!');
+    }
 }

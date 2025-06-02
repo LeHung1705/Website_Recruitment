@@ -7,7 +7,7 @@
 @section('content')
 <div class="main-content">
     <div class="main-title">
-        <h2>Quản lý lịch phỏng vấn</h2>
+        <h2>Quản lý tin tuyển dụng</h2>
     </div>
     
     <table>
@@ -27,7 +27,7 @@
                     <td>{{ $job->tieu_de }}</td>
                     <td>{{ $job->nganh_nghe }}</td>
                     <td>{{ $job->dia_diem }}</td>
-                    <td>{{ $job->ngay_dang->format('d/m/Y') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($job->ngay_dang)->format('d/m/Y') }}</td>
                 </tr>
             @empty
                 <tr>

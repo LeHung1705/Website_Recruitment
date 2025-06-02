@@ -20,4 +20,6 @@ Route::middleware(['auth'])->group(function(){
 Route::middleware(['auth', AuthAdmin::class])->group(function(){
     Route::get('/admin',[AdminController::class,'index'])->name('admin.index');
     Route::get('/admin/jobs',[JobController::class,'index'])->name('admin.jobs');
+    Route::get('/admin/add-job', [JobController::class, 'add_job_view'])->name('admin.add_job_view');
+    Route::post('/admin/add-job', [JobController::class, 'add_job'])->name('admin.add_job');
 });
