@@ -77,4 +77,21 @@ main {
     gap: 20px;
 }
 
+.header-right {
+    display: flex;
+    align-items: center;
+    height: 58px;
+    gap: 5px;
+}
 
+.header-right-item {
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    width: 172px;
+    font-size: 18px;
+    color: black;
+    font-weight: 500;
+}

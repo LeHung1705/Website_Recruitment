@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'WebsiteTuyenDung') }}</title>
+
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    @stack('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class = "header-top">
+            <div class="logo">
+                <a href="{{ url('/') }}">
+                    <img style="width:20%" src="{{ asset('assets/images/LOGO.png') }}" alt="Logo" class="logo-img">
+                </a>
+            </div>
+            @guest
+                <div class="header-right">
+                    <a href=" {{ route('login') }} " class="btn-candidate header-right-item font-playfair-display">
+                        Đăng Nhập
+                    </a>
+                </div>
+            @else
+                <div class="header-right">
+                    <a style="text-decoration: none;"href="{{ Auth::user()->utype == 'ADM' ? route('admin.index') : route('user.index') }}"
+                        class="btn-candidate header-right-item font-playfair-display">
+                        <i class="bi bi-person-circle" style="font-size: 1.5rem;"></i>
+                        <span style="padding: 10px; font-size:15px; white-space: nowrap;">{{ Auth::user()->name }}</span>
+                    </a>
+                </div>
+            @endguest
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <main>
+        <div class="sidebar">
+            <a href="#" class="nav-item nav-add-job active"><i class="bi bi-plus-square"></i> Thêm mới việc
+                làm</a>
+            <a href="{{route('admin.jobs')}}" class="nav-item nav-manage-jobs"><i class="bi bi-briefcase"></i> Quản lý tin tuyển
+                dụng</a>
+            <a href="#" class="nav-item nav-manage-candidates"><i class="bi bi-person"></i> Quản lý ứng viên</a>
+            <a href="#" class="nav-item nav-manage-exams"><i class="bi bi-file-earmark"></i> Quản lý bài kiểm
+                tra</a>
+            <a href="#" class="nav-item nav-manage-interviews"><i class="bi bi-calendar"></i> Quản lý lịch phỏng
+                vấn</a>
+        </div>
+
+
+        @yield('content')
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-left">
+            <h4>&copy; 2023 IntroWear. All rights reserved.</h4><br>
+            <p>From: Trường Đại Học Công Nghệ Thông Tin - Đại Học Quốc Gia TP Hồ Chí Minh</p>
+            <p>----------------</p>
+        </div>
+        <div class="footer-right">
+            <i class="bi bi-telephone"> Contact: 0987654321</i>
+            <br>
+            <i class="bi bi-envelope"> Address: Khu phố 6, phường Linh Trung, Thủ Đức, TP Hồ Chí Minh</i>
+        </div>
+    </footer>
+    @stack('scripts')
+</body>
+</html>

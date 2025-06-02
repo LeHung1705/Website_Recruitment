@@ -13,5 +13,6 @@ class JobController extends Controller
         $jobs = TinTuyenDung::where('nguoi_dang_id', Auth::id())
             ->orderBy('created_at', 'desc')
             ->get();
+        return view('admin.jobs', compact('jobs'));
     }
 }
