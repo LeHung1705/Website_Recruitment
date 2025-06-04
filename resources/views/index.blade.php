@@ -1,8 +1,11 @@
 @extends('layouts.app')
+
 @push('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/home-page.css') }}" />
 @endpush
+
 @section('content')
+<div class="container"
 <!-- seach-box -->
 <div class="search-box">
     <img src="{{asset('assets/images/glass.png')}}" alt="glass" height="90%" />
@@ -526,4 +529,5 @@
     </div>
   </div>
   <button class="btn-login-now">Đăng nhập ngay</button>
+</div>
 @endsection
