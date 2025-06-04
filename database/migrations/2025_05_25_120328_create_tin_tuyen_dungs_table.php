@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('tieu_de');
             $table->text('mo_ta');
             $table->string('nganh_nghe');
-            $table->string('loai_cong_viec');
+            $table->string('yeu_cau'); //yêu cầu: kinh nghiệm, trình độ
+            $table->string('loai_cong_viec'); //hình thức: onsite, remote, hybrid
+            $table->enum('thanh_pho', ['TP.HCM', 'TP.Hà Nội', 'TP.Đà Nẵng']);
             $table->string('dia_diem');
             $table->decimal('luong', 15, 2);
             $table->enum('trang_thai', ['da_phe_duyet', 'da_huy'])->default('da_phe_duyet');

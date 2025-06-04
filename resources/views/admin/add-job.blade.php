@@ -77,6 +77,8 @@
                     </span>
                 </div>
             </div>
+            
+            
 
             <div class="form-group mb-3 d-flex align-items-start">
                 <label for="dia_diem" class="form-label me-3 pt-2">Địa điểm</label>
@@ -103,6 +105,16 @@
                 <div class="input-group flex-grow-1">
                     <input type="text" class="form-control" id="nganh_nghe" name="nganh_nghe" required value="{{ old('nganh_nghe') }}" />
                     <span class="input-group-text">
+                        <img src="{{ asset('images/pencil.png') }}" alt="pencil" width="13px" />
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group mb-3 d-flex align-items-start">
+                <label for="yeu_cau" class="form-label me-3 pt-2">Yêu cầu</label>
+                <div class="input-group flex-grow-1">
+                    <textarea class="form-control" id="yeu_cau" name="yeu_cau" rows="5" required placeholder="Vui lòng nhập mỗi yêu cầu trên một dòng mới. Ví dụ:&#10;Tốt nghiệp Đại học chuyên ngành CNTT&#10;Có kinh nghiệm lập trình PHP 2 năm&#10;Thành thạo tiếng Anh giao tiếp&#10;Kỹ năng làm việc nhóm tốt">{{ old('yeu_cau') }}</textarea>
+                    <span class="input-group-text align-items-start pt-2">
                         <img src="{{ asset('images/pencil.png') }}" alt="pencil" width="13px" />
                     </span>
                 </div>

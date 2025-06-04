@@ -38,10 +38,10 @@
       </div>
       @endguest
     </header>
-    <div class="container">
+
       <!-- code here -->
       @yield('content')
-    </div>
+
     <!-- FOOTER -->
     <footer>
         <div class="footer-left">
