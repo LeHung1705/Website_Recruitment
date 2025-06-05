@@ -27,6 +27,11 @@ Route::middleware(['auth', AuthAdmin::class])->group(function(){
     Route::get('/admin/jobs',[JobController::class,'index'])->name('admin.jobs');
     Route::get('/admin/add-job', [JobController::class, 'add_job_view'])->name('admin.add_job_view');
     Route::post('/admin/add-job', [JobController::class, 'add_job'])->name('admin.add_job');
+
+    // Thêm routes quản lý ứng viên
+    Route::get('/admin/jobs/{job}/applications', [ApplicationController::class, 'showApplications'])->name('admin.applications');
+    Route::patch('/admin/applications/{application}/status', [ApplicationController::class, 'updateStatus'])->name('admin.applications.update-status');
+    Route::get('/admin/profiles/{user}', [ApplicationController::class, 'viewProfile'])->name('admin.view.profile');
 });
 
 //Route Job

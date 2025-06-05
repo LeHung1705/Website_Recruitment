@@ -5,6 +5,12 @@
     align-items: center;
 }
 
+.banner {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
 .search-box {
     display: flex;
     justify-content: space-between;
@@ -71,8 +77,15 @@
     font-weight: 300;
     margin-top: 30px;
     margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 
 .btn-apply-now:hover {
     background-color: #3f7dda;
+    color: white;
+    text-decoration: none;
 }
+
