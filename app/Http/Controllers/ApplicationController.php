@@ -49,14 +49,14 @@ class ApplicationController extends Controller
 
     public function apply(Request $request, $job_id)
     {
-        $hoSo = Hosocanhan::where('user_id', Auth::id())->first();
+        $hoSo = Hosocanhan::where('nguoi_dung_id', Auth::id())->first(); // Lấy hồ sơ cá nhân của người dùng đang đăng nhập
         
         if (!$hoSo) {
             return redirect()->route('user.index')
                            ->with('error', 'Vui lòng cập nhật hồ sơ cá nhân trước khi ứng tuyển');
         }
 
-        $exists = Donungtuyen::where('user_id', Auth::id())
+        $exists = Donungtuyen::where('ung_vien_id', Auth::id())
                             ->where('tin_tuyen_dung_id', $job_id)
                             ->exists();
 
@@ -65,11 +65,31 @@ class ApplicationController extends Controller
         }
 
         Donungtuyen::create([
-            'user_id' => Auth::id(),
+            'ung_vien_id' => Auth::id(),
             'tin_tuyen_dung_id' => $job_id,
             'trang_thai' => 'cho_duyet'
         ]);
 
         return back()->with('success', 'Ứng tuyển thành công! Nhà tuyển dụng sẽ sớm liên hệ với bạn.');
+    }
+
+    public function showApplications($jobId){
+        $applications = Donungtuyen::where('tin_tuyen_dung_id', $jobId)
+            ->with(['ungvien', 'ungvien.hosocanhan']) // Lấy thông tin ứng viên và hồ sơ cá nhân
+            ->get();
+        return view('admin.applications', compact('applications'));
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $application = Donungtuyen::findOrFail($id);
+        $application->update(['trang_thai' => $request->status]);
+        return back()->with('success', 'Đã cập nhật trạng thái đơn ứng tuyển');
+    }
+
+    public function viewProfile($userId)
+    {
+        $user = User::with('hosocanhan')->findOrFail($userId);
+        return view('admin.profile', compact('user'));
     }
 }

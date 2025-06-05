@@ -11,7 +11,7 @@ class JobController extends Controller
     public function index()
     {
         $jobs = TinTuyenDung::where('nguoi_dang_id', Auth::id())
-            ->orderBy('created_at', 'desc')
+            ->orderBy('ngay_dang', 'desc')
             ->get();
         return view('admin.jobs', compact('jobs'));
     }

@@ -54,14 +54,13 @@ thead th {
 tbody td {
     padding: 12px;
     border-bottom: 1px solid #888;
-    vertical-align: top;;
+    vertical-align: middle;
 }
 
 td a i {
-    font-size: 24px;
-    color: #000;
-    display: block;
-    text-align: left;
+    font-size: 16px;
+    color: white;
+    margin-right: 5px;
 }
 
 /* td:nth-child(3) {
@@ -69,4 +68,53 @@ td a i {
 
 tr:hover {
     background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.action-column {
+    text-align: center;
+}
+
+.btn-view-applications {
+    padding: 8px 15px;
+    background-color: #2457A6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.btn-view-applications:hover {
+    background-color: #1a3f7a;
+    color: white;
+    text-decoration: none;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+/* Ngăn chặn sự kiện click trên nút khi click vào dòng */
+.btn-view-applications {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-view-applications:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }

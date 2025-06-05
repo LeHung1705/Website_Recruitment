@@ -14,6 +14,7 @@ return new class extends Migration
             $table->text('hoc_van');
             $table->text('kinh_nghiem');
             $table->text('ky_nang');
+            $table->string('cv_path')->nullable();
             $table->timestamps();
         });
     }
