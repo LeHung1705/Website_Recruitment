@@ -243,7 +243,7 @@
     align-items: center;
     width: 90%;
     border-top: #2457A6 solid 1px;
-    padding: 5px;
+    padding: 10px;
     height: 10%;
 }
 
@@ -251,6 +251,7 @@
     font-size: 14px;
     color: #2457A6;
     width: 60%;
+    min-width: 60%;
     margin-right: 10px;
 }
 
@@ -258,10 +259,13 @@
     font-size: 14px;
     color: #2457A6;
     width: 30%;
-    
+    text-align: right;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1150px) {
+    .best-company-item {
+        height: 385px;
+    }
     .best-company-item-footer {
         flex-direction: column;
         align-items: flex-start;
@@ -270,11 +274,13 @@
     }
     .company-location {
         width: 100%;
+        text-align: center;
         
     }
     .job-quantity {
         width: 100%;
-        
+        text-align: center;
     }
     
 }
+
