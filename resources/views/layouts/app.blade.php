@@ -23,6 +23,24 @@
         <img src="{{ asset('assets/images/LOGO.png')}}" alt="logo" height="90%" />
         <span class="logo-name font-playfair-display" onclick="RedirectToHomePage()">TraiDepTuyenDung</span>
       </div>
+
+      <nav class="main-nav">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="{{ route('home.index') }}" class="nav-link font-playfair-display">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('jobs.index') }}" class="nav-link font-playfair-display">Jobs</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link font-playfair-display">Companies</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link font-playfair-display">About us</a>
+          </li>
+        </ul>
+      </nav>
+
       @guest
       <div class="header-right">
         <a href=" {{route('login')}} " class="btn-candidate header-right-item font-playfair-display">
