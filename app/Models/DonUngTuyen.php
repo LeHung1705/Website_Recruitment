@@ -7,7 +7,24 @@ use Illuminate\Database\Eloquent\Model;
 class DonUngTuyen extends Model
 {
     protected $table = 'donungtuyen';
-    protected $fillable = ['ung_vien_id', 'tin_tuyen_dung_id', 'trang_thai'];
+    protected $fillable = [
+        'ung_vien_id',
+        'tin_tuyen_dung_id',
+        'nha_tuyen_dung_id',
+        'trang_thai'
+    ];
+
+    // Thêm const cho trạng thái
+    const TRANG_THAI = [
+        'CHO_DUYET' => 'cho_duyet',
+        'DA_DUYET' => 'da_duyet',
+        'TU_CHOI' => 'tu_choi'
+    ];
+
+    // Thêm cast để tự động xử lý giá trị
+    protected $casts = [
+        'trang_thai' => 'string'
+    ];
 
     // N:1 với NGUOIDUNG
     public function ungvien()
@@ -25,6 +42,12 @@ class DonUngTuyen extends Model
     public function phongvan()
     {
         return $this->hasOne(Phongvan::class, 'don_ung_tuyen_id');
+    }
+
+    // 1:N với KETQUABAIKIEMTRA
+    public function ketquabaikiemtras()
+    {
+        return $this->hasMany(Ketquabaikiemtra::class, 'don_ung_tuyen_id');
     }
 
 }

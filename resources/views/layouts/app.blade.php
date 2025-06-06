@@ -43,13 +43,13 @@
 
       @guest
       <div class="header-right">
-        <a href=" {{route('login')}} " class="btn-candidate header-right-item font-playfair-display">
+        <a href=" {{route('login')}} " class="btn-candidate header-right-item font-playfair-display" style="text-decoration: none;">
           Đăng Nhập
         </a>
       </div>
       @else
       <div class="header-right">
-        <a style="background-color:black; text-decoration: none;"href="{{ Auth::user()->utype=='ADM' ? route('admin.index') : route('user.index')}}" class="btn-candidate header-right-item font-playfair-display">
+        <a style="background-color:black; text-decoration: none;"href="{{ Auth::user()->utype=='ADM' ? route('admin.index') : route('user.profile')}}" class="btn-candidate header-right-item font-playfair-display">
             <i class="bi bi-person-circle" style="font-size: 1.5rem;"></i>
             <span style="padding: 10px; font-size:15px; white-space: nowrap;">{{ Auth::user()->name }}</span>
         </a>
@@ -74,6 +74,8 @@
         </div>
     </footer>
     <script src="{{ asset('assets/js/main.js')}}"></script>
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     @stack('scripts')
 </body>
 </html>
