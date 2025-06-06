@@ -9,6 +9,11 @@
 
 @section('content')
 <div class="container">
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <!-- banner -->
     <img src="{{ asset('assets/images/banner.jpg') }}" alt="banner" width="100%" class="banner" />
@@ -78,10 +83,20 @@
     
     @auth
         @if(Auth::user()->utype == 'USR')
-            <form action="{{ route('apply.job', $job->id) }}" method="POST">
-                @csrf
-                <button type="submit" class="btn-apply-now">Ứng tuyển ngay</button>
-            </form>
+            @php
+                $hasApplied = \App\Models\Donungtuyen::where('ung_vien_id', Auth::id())
+                    ->where('tin_tuyen_dung_id', $job->id)
+                    ->exists();
+            @endphp
+            
+            @if($hasApplied)
+                <button class="btn-applied" disabled>Bạn đã ứng tuyển công việc này</button>
+            @else
+                <form action="{{ route('apply.job', $job->id) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn-apply-now">Ứng tuyển ngay</button>
+                </form>
+            @endif
         @elseif(Auth::user()->utype == 'ADM' && $job->nguoi_dang_id == Auth::user()->id)
             <a href="{{ route('admin.applications', $job->id) }}" class="btn-apply-now">Xem danh sách ứng viên</a>
         @endif

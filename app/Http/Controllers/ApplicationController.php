@@ -67,7 +67,7 @@ class ApplicationController extends Controller
         Donungtuyen::create([
             'ung_vien_id' => Auth::id(),
             'tin_tuyen_dung_id' => $job_id,
-            'trang_thai' => 'cho_duyet'
+            'trang_thai' => 'cho_xu_ly'
         ]);
 
         return back()->with('success', 'Ứng tuyển thành công! Nhà tuyển dụng sẽ sớm liên hệ với bạn.');

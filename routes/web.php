@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\AuthUser;
 use App\Http\Middleware\AuthAdmin;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\ProfileController;
 
 Auth::routes();
 
@@ -16,6 +17,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/account-dashboard',[UserController::class,'index'])->name('user.index');
+    Route::get('/profile',[ProfileController::class,'index'])->name('user.profile');
+    Route::post('/profile',[ProfileController::class,'storeOrUpdate'])->name('user.profile.store');
 
     //Route Ứng tuyển - cần đăng nhập
     Route::post('/jobs/{job}/apply', [ApplicationController::class, 'apply'])->name('apply.job');

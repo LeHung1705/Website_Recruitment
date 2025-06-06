@@ -89,3 +89,35 @@
     text-decoration: none;
 }
 
+.alert {
+    width: 60%;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.btn-applied {
+    background-color: #6c757d;
+    border: none;
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 20px;
+    color: white;
+    font-weight: 300;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
