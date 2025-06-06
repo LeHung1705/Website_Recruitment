@@ -64,9 +64,13 @@ class ApplicationController extends Controller
             return back()->with('error', 'Bạn đã ứng tuyển công việc này rồi');
         }
 
+        // Lấy thông tin tin tuyển dụng để biết ai là người đăng tin
+        $job = Tintuyendung::findOrFail($job_id);
+
         Donungtuyen::create([
             'ung_vien_id' => Auth::id(),
             'tin_tuyen_dung_id' => $job_id,
+            'nha_tuyen_dung_id' => $job->nguoi_dang_id, // Thêm ID của nhà tuyển dụng
             'trang_thai' => 'cho_xu_ly'
         ]);
 

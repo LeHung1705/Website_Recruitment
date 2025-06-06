@@ -10,6 +10,7 @@ class DonUngTuyen extends Model
     protected $fillable = [
         'ung_vien_id',
         'tin_tuyen_dung_id',
+        'nha_tuyen_dung_id',
         'trang_thai'
     ];
 
@@ -41,6 +42,12 @@ class DonUngTuyen extends Model
     public function phongvan()
     {
         return $this->hasOne(Phongvan::class, 'don_ung_tuyen_id');
+    }
+
+    // 1:N với KETQUABAIKIEMTRA
+    public function ketquabaikiemtras()
+    {
+        return $this->hasMany(Ketquabaikiemtra::class, 'don_ung_tuyen_id');
     }
 
 }

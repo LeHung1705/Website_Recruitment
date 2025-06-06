@@ -10,6 +10,7 @@ use App\Http\Middleware\AuthUser;
 use App\Http\Middleware\AuthAdmin;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TestController;
 
 Auth::routes();
 
@@ -22,6 +23,15 @@ Route::middleware(['auth'])->group(function(){
 
     //Route Ứng tuyển - cần đăng nhập
     Route::post('/jobs/{job}/apply', [ApplicationController::class, 'apply'])->name('apply.job');
+
+    // Routes cho user (USR) - Bài kiểm tra
+    Route::middleware(['role:USR'])->prefix('user/test')->name('user.test.')->group(function () {
+        Route::get('/', [TestController::class, 'candidateIndex'])->name('index');
+        Route::get('/{id}', [TestController::class, 'showTest'])->name('show');
+        Route::post('/{id}/submit', [TestController::class, 'submitTest'])->name('submit');
+        Route::get('/history', [TestController::class, 'candidateHistory'])->name('history');
+        Route::get('/result/{id}', [TestController::class, 'candidateResult'])->name('result');
+    });
 });
 
 //Route cua Admin
@@ -35,6 +45,17 @@ Route::middleware(['auth', AuthAdmin::class])->group(function(){
     Route::get('/admin/jobs/{job}/applications', [ApplicationController::class, 'showApplications'])->name('admin.applications');
     Route::patch('/admin/applications/{application}/status', [ApplicationController::class, 'updateStatus'])->name('admin.applications.update-status');
     Route::get('/admin/profiles/{user}', [ApplicationController::class, 'viewProfile'])->name('admin.view.profile');
+
+    // Routes cho admin (ADM) - Bài kiểm tra
+    Route::prefix('admin/test')->name('admin.test.')->group(function () {
+        Route::get('/', [TestController::class, 'index'])->name('index');
+        Route::get('/create', [TestController::class, 'showCreateForm'])->name('create');
+        Route::post('/store', [TestController::class, 'store'])->name('store');
+        Route::get('/{id}/invite', [TestController::class, 'showInviteForm'])->name('invite');
+        Route::post('/{id}/send-invite', [TestController::class, 'sendInvite'])->name('send.invite');
+        Route::get('/{id}/results', [TestController::class, 'showResults'])->name('results');
+        Route::delete('/{id}', [TestController::class, 'destroy'])->name('destroy');
+    });
 });
 
 //Route Job

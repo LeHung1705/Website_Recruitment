@@ -13,21 +13,33 @@
             </div>
             <ul class="nav-menu-items">
                 <li class="nav-menu-item">
-                    <a href="{{ route('user.index') }}" class="nav-menu-link">
+                    <a href="{{ route('user.index') }}" class="nav-menu-link {{ request()->routeIs('user.index') ? 'active' : '' }}">
                         <i class="fas fa-user nav-menu-icon"></i>
                         Thông tin cá nhân
                     </a>
                 </li>
                 <li class="nav-menu-item">
-                    <a href="{{ route('user.profile') }}" class="nav-menu-link active">
+                    <a href="{{ route('user.profile') }}" class="nav-menu-link {{ request()->routeIs('user.profile') ? 'active' : '' }}">
                         <i class="fas fa-edit nav-menu-icon"></i>
                         Cập nhật hồ sơ
                     </a>
                 </li>
                 <li class="nav-menu-item">
-                    <a href="#" class="nav-menu-link">
+                    <a href="#" class="nav-menu-link {{ request()->routeIs('user.applications') ? 'active' : '' }}">
                         <i class="fas fa-briefcase nav-menu-icon"></i>
                         Đơn ứng tuyển
+                    </a>
+                </li>
+                <li class="nav-menu-item">
+                    <a href="{{ route('user.test.index') }}" class="nav-menu-link {{ request()->routeIs('user.test.*') ? 'active' : '' }}">
+                        <i class="fas fa-file-alt nav-menu-icon"></i>
+                        Bài kiểm tra
+                    </a>
+                </li>
+                <li class="nav-menu-item">
+                    <a href="#" class="nav-menu-link {{ request()->routeIs('user.interviews') ? 'active' : '' }}">
+                        <i class="fas fa-calendar-alt nav-menu-icon"></i>
+                        Lịch phỏng vấn
                     </a>
                 </li>
                 <li class="nav-menu-item">

@@ -32,9 +32,9 @@
             @foreach($applications as $index => $application)
             <tr>
                 <td>{{ $index + 1 }}</td>
-                <td>{{ $application->ungvien->hosocanhan->ho_ten ?? 'Chưa cập nhật' }}</td>
+                <td>{{ $application->ungvien->name ?? 'Chưa cập nhật' }}</td>
                 <td>{{ $application->ungvien->email }}</td>
-                <td>{{ $application->ungvien->hosocanhan->so_dien_thoai ?? 'Chưa cập nhật' }}</td>
+                <td>{{ $application->ungvien->phone ?? 'Chưa cập nhật' }}</td>
                 <td>{{ $application->tintuyendung->tieu_de }}</td>
                 <td>{{ $application->created_at->format('d/m/Y') }}</td>
                 <td>

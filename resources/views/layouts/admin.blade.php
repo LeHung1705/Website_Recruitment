@@ -19,7 +19,7 @@
 <body>
     <!-- HEADER -->
     <header>
-        <div class = "header-top">
+        <div class="header-top">
             <div class="logo">
                 <a href="{{ url('/') }}" style="text-decoration: none; color: black; font-size: 20px; font-weight: bold; font-family: 'Playfair Display', serif;">
                     <img style="width:20%;" src="{{ asset('assets/images/LOGO.png') }}" alt="Logo" class="logo-img">TraiDepTuyenDung
@@ -33,7 +33,7 @@
                 </div>
             @else
                 <div class="header-right">
-                    <a style="text-decoration: none;"href="{{ Auth::user()->utype == 'ADM' ? route('admin.index') : route('user.index') }}"
+                    <a style="text-decoration: none;" href="{{ route('admin.index') }}"
                         class="btn-candidate header-right-item font-playfair-display">
                         <i class="bi bi-person-circle" style="font-size: 1.5rem;"></i>
                         <span style="padding: 10px; font-size:15px; white-space: nowrap;">{{ Auth::user()->name }}</span>
@@ -46,27 +46,44 @@
     <!-- NAVIGATION -->
     <main>
         <div class="sidebar">
-            <a href="{{route('admin.add_job_view')}}" class="nav-item nav-add-job active"><i class="bi bi-plus-square"></i> Thêm mới việc
-                làm</a>
-            <a href="{{route('admin.jobs')}}" class="nav-item nav-manage-jobs"><i class="bi bi-briefcase"></i> Quản lý tin tuyển
-                dụng</a>
-            <a href="#" class="nav-item nav-manage-candidates"><i class="bi bi-person"></i> Quản lý ứng viên</a>
-            <a href="#" class="nav-item nav-manage-exams"><i class="bi bi-file-earmark"></i> Quản lý bài kiểm
-                tra</a>
-            <a href="#" class="nav-item nav-manage-interviews"><i class="bi bi-calendar"></i> Quản lý lịch phỏng
-                vấn</a>
-                <form method="POST" action="{{ route('logout') }}" class="nav-logout">
-                    @csrf
-                    <button type="submit" class="sidebar-btn">
-                        <i class="bi bi-box-arrow-right"></i> Đăng xuất
-                    </button>
-                </form>
-                
+            <a href="{{ route('admin.add_job_view') }}" class="nav-item {{ request()->routeIs('admin.add_job_view') ? 'active' : '' }}">
+                <i class="bi bi-plus-square"></i> Thêm mới việc làm
+            </a>
+            <a href="{{ route('admin.jobs') }}" class="nav-item {{ request()->routeIs('admin.jobs') || request()->routeIs('admin.applications') ? 'active' : '' }}">
+                <i class="bi bi-briefcase"></i> Quản lý tin tuyển dụng & ứng viên
+            </a>
+            
+            <div class="nav-item-dropdown">
+                <a href="#" class="nav-item {{ request()->routeIs('admin.test.*') ? 'active' : '' }}">
+                    <i class="bi bi-file-earmark-text"></i> Quản lý bài kiểm tra
+                    <i class="bi bi-chevron-right" style="float: right; margin: 3px;"></i>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="{{ route('admin.test.create') }}" 
+                        class="dropdown-item {{ request()->routeIs('admin.test.create') ? 'active' : '' }}">
+                        <i class="bi bi-plus-circle"></i> Thêm bài kiểm tra
+                    </a>
+                    <a href="{{ route('admin.test.index') }}" 
+                        class="dropdown-item {{ request()->routeIs('admin.test.index') ? 'active' : '' }}">
+                        <i class="bi bi-list"></i> Danh sách bài kiểm tra
+                    </a>
+                    <a href="{{ route('admin.test.results', ['id' => 'all']) }}" 
+                        class="dropdown-item {{ request()->routeIs('admin.test.results') ? 'active' : '' }}">
+                        <i class="bi bi-graph-up"></i> Kết quả kiểm tra
+                    </a>
+                </div>
+            </div>
+
+            <form method="POST" action="{{ route('logout') }}" class="nav-logout">
+                @csrf
+                <button type="submit" class="sidebar-btn">
+                    <i class="bi bi-box-arrow-right"></i> Đăng xuất
+                </button>
+            </form>
         </div>
 
         @yield('content')
     </main>
-
 
     <!-- FOOTER -->
     <footer>
@@ -82,5 +99,7 @@
         </div>
     </footer>
     @stack('scripts')
+    <script src="{{ asset('assets/js/admin.js') }}"></script>
 </body>
 </html>
+
