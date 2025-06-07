@@ -128,3 +128,106 @@ footer {
     }
 }
 
+/* Notification Styles */
+.notification-container {
+    position: relative;
+    margin-right: 15px;
+}
+
+.notification-icon {
+    position: relative;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.notification-icon i {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    background-color: #ff4444;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.notification-popup {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 300px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+}
+
+.notification-container:hover .notification-popup {
+    display: block;
+}
+
+.notification-header {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.notification-header h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.notification-content {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.notification-item {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.notification-item:hover {
+    background-color: #f8f9fa;
+}
+
+.notification-item i {
+    font-size: 1.2rem;
+    color: #2457A6;
+}
+
+.notification-item span {
+    color: #333;
+    font-size: 0.9rem;
+}
+
+/* Custom scrollbar for notification content */
+.notification-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.notification-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.notification-content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+.notification-content::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+

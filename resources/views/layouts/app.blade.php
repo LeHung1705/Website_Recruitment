@@ -41,6 +41,8 @@
         </ul>
       </nav>
 
+      
+
       @guest
       <div class="header-right">
         <a href=" {{route('login')}} " class="btn-candidate header-right-item font-playfair-display" style="text-decoration: none;">
@@ -49,6 +51,25 @@
       </div>
       @else
       <div class="header-right">
+        <div class="notification-container">
+          <div class="notification-icon">
+            <i class="bi bi-bell"></i>
+            <span class="notification-badge">{{ $notifications->count() }}</span>
+          </div>
+          <div class="notification-popup">
+            <div class="notification-header">
+              <h3>Thông báo</h3>
+            </div>
+            <div class="notification-content">
+              @foreach ($notifications as $notification)
+              <div class="notification-item">
+                <i class="bi bi-info-circle"></i>
+                <span>{{ $notification->noi_dung }}</span>
+              </div>
+              @endforeach
+            </div>
+          </div>
+        </div>
         <a style="background-color:black; text-decoration: none;"href="{{ Auth::user()->utype=='ADM' ? route('admin.index') : route('user.profile')}}" class="btn-candidate header-right-item font-playfair-display">
             <i class="bi bi-person-circle" style="font-size: 1.5rem;"></i>
             <span style="padding: 10px; font-size:15px; white-space: nowrap;">{{ Auth::user()->name }}</span>
