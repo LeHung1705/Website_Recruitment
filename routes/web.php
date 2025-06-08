@@ -20,17 +20,17 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/account-dashboard',[UserController::class,'index'])->name('user.index');
     Route::get('/profile',[ProfileController::class,'index'])->name('user.profile');
     Route::post('/profile',[ProfileController::class,'storeOrUpdate'])->name('user.profile.store');
-
+    Route::get('/applications', [ApplicationController::class, 'showApplicationsUser'])->name('user.applications');
     //Route Ứng tuyển - cần đăng nhập
     Route::post('/jobs/{job}/apply', [ApplicationController::class, 'apply'])->name('apply.job');
 
     // Routes cho user (USR) - Bài kiểm tra
-    Route::middleware(['role:USR'])->prefix('user/test')->name('user.test.')->group(function () {
+    Route::prefix('user/test')->name('user.test.')->group(function () {
         Route::get('/', [TestController::class, 'candidateIndex'])->name('index');
-        Route::get('/{id}', [TestController::class, 'showTest'])->name('show');
-        Route::post('/{id}/submit', [TestController::class, 'submitTest'])->name('submit');
         Route::get('/history', [TestController::class, 'candidateHistory'])->name('history');
         Route::get('/result/{id}', [TestController::class, 'candidateResult'])->name('result');
+        Route::get('/{id}', [TestController::class, 'showTest'])->name('show');
+        Route::post('/{id}/submit', [TestController::class, 'submitTest'])->name('submit');
     });
 });
 

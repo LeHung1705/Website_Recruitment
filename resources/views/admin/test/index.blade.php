@@ -5,15 +5,16 @@
 @endpush
 
 @section('content')
-
-    <div class="card">
-        <div class="card-header" id="test-header">
-            <h4>Quản lý bài kiểm tra</h4>
-            <a href="{{ route('admin.test.create') }}" class="btn btn-primary">
-                Tạo bài kiểm tra mới
-            </a>
+    <div class="test-card">
+        <div class="test-card-header">
+            <div id="test-header">
+                <h4>Quản lý bài kiểm tra</h4>
+                <a href="{{ route('admin.test.create') }}" class="btn btn-primary">
+                    Tạo bài kiểm tra mới
+                </a>
+            </div>
         </div>
-        <div class="card-body">
+        <div class="test-card-body">
             @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -78,5 +79,4 @@
             @endif
         </div>
     </div>
-
 @endsection 

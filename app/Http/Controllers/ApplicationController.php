@@ -84,6 +84,15 @@ class ApplicationController extends Controller
         return view('admin.applications', compact('applications'));
     }
 
+    public function showApplicationsUser()
+    {
+        $applications = Donungtuyen::where('ung_vien_id', Auth::id())
+            ->with(['tintuyendung', 'ungvien']) // Include job posting details
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        return view('user.applications', compact('applications'));
+    }
+
     public function updateStatus(Request $request, $id)
     {
         $application = Donungtuyen::findOrFail($id);
