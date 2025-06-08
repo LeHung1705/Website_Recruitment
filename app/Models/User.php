@@ -42,7 +42,7 @@ class User extends Authenticatable
     }
 
     protected $table = 'users';
-    protected $fillable = ['email', 'password', 'name', 'utype'];
+    protected $fillable = ['email', 'password', 'name', 'utype', 'phone'];
 
     // 1:N với TINTUYENDUNG
     public function tintuyendungs()

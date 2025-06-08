@@ -62,81 +62,60 @@
     <div class="main-content">
         <div class="card">
             <div class="card-header">
-                <h4>Bài kiểm tra</h4>
+                <h4>Bài kiểm tra của bạn</h4>
             </div>
             <div class="card-body">
-                <div class="timer" id="timer">Thời gian: 30:00</div>
+                <ul class="nav nav-tabs mb-4">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('user.test.history') }}">
+                            Lịch sử kiểm tra
+                        </a>
+                    </li>
+                </ul>
 
-                <form action="{{ route('user.test.submit', $test->id) }}" method="POST" id="testForm">
-                    @csrf
-                    @if(empty($donUngTuyenId))
-                        <div class="alert alert-danger">
-                            Không tìm thấy thông tin đơn ứng tuyển. Vui lòng liên hệ admin.
-                        </div>
-                    @endif
-                    <input type="hidden" name="don_ung_tuyen_id" value="{{ $donUngTuyenId }}">
-                    @php
-                        $questions = json_decode($test->noi_dung, true);
-                    @endphp
-
-                    @foreach($questions as $index => $question)
-                    <div class="question-block">
-                        <h5>Câu {{ $index + 1 }}</h5>
-                        <p>{{ $question['cau_hoi'] }}</p>
-                        
-                        <ul class="options-list">
-                            @foreach($question['lua_chon'] as $optionIndex => $option)
-                            <li class="option-item">
-                                <label>
-                                    <input type="radio" 
-                                           name="answers[{{ $index }}]" 
-                                           value="{{ $optionIndex }}"
-                                           required>
-                                    {{ $option }}
-                                </label>
-                            </li>
+                @if($pendingTests->isEmpty())
+                <p>Bạn chưa có bài kiểm tra nào mới.</p>
+                @else
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Loại bài</th>
+                                <th>Thời gian</th>
+                                <th>Số câu hỏi</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($pendingTests as $notification)
+                            @php
+                                $test = $notification->baikiemtra;
+                                $questions = json_decode($test->noi_dung, true);
+                            @endphp
+                            <tr>
+                                <td>{{ ucfirst($test->loai_bai) }}</td>
+                                <td>30 phút</td>
+                                <td>{{ count($questions) }}</td>
+                                <td>
+                                    <a href="{{ $notification->link }}" 
+                                       class="btn btn-primary"
+                                       style="text-decoration: none;"
+                                       onclick="return confirm('Bạn có chắc muốn bắt đầu làm bài? Thời gian sẽ bắt đầu tính ngay khi bạn vào làm bài.')">
+                                        Bắt đầu làm bài
+                                    </a>
+                                </td>
+                            </tr>
                             @endforeach
-                        </ul>
-                    </div>
-                    @endforeach
+                        </tbody>
+                    </table>
+                </div>
 
-                    <button type="submit" class="btn btn-primary" id="submitBtn">Nộp bài</button>
-                </form>
+                <div class="mt-4">
+                    {{ $pendingTests->links() }}
+                </div>
+                @endif
             </div>
         </div>
     </div>
 </div>
-
-@push('scripts')
-<script>
-let timeLeft = 1800; // 30 minutes in seconds
-const timerElement = document.getElementById('timer');
-const form = document.getElementById('testForm');
-const submitBtn = document.getElementById('submitBtn');
-
-const timer = setInterval(() => {
-    timeLeft--;
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
-    timerElement.textContent = `Thời gian: ${minutes}:${seconds.toString().padStart(2, '0')}`;
-
-    if (timeLeft <= 0) {
-        clearInterval(timer);
-        form.submit();
-    }
-}, 1000);
-
-// Prevent form resubmission
-form.addEventListener('submit', () => {
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Đang nộp bài...';
-});
-
-// Warn before leaving page
-window.addEventListener('beforeunload', (e) => {
-    e.preventDefault();
-    e.returnValue = '';
-});
-</script>
-@endpush
 @endsection 

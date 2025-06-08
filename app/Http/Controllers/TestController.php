@@ -72,7 +72,7 @@ class TestController extends Controller
                 'noi_dung' => "Bạn được mời làm bài kiểm tra: {$test->loai_bai}",
                 'trang_thai' => 'chua_doc',
                 'thoi_gian_gui' => now(),
-                'link' => route('user.test.show', $id)
+                'bai_kiem_tra_id' => $id
             ]);
         }
 
@@ -114,8 +114,9 @@ class TestController extends Controller
     public function candidateIndex()
     {
         $pendingTests = Thongbao::where('nguoi_nhan_id', Auth::id())
-                               ->whereNotNull('link')
-                               ->whereDoesntHave('ketqua', function($query) {
+                               ->where('trang_thai', 'chua_doc')
+                               ->whereHas('baikiemtra')
+                               ->whereDoesntHave('baikiemtra.ketquabaikiemtras', function($query) {
                                    $query->where('nguoi_lam_id', Auth::id());
                                })
                                ->with('baikiemtra')
@@ -129,11 +130,11 @@ class TestController extends Controller
         $test = Baikiemtra::findOrFail($id);
         
         // Kiểm tra xem ứng viên có được mời làm bài này không
-        $invited = Thongbao::where('nguoi_nhan_id', Auth::id())
-                          ->where('link', route('user.test.show', $id))
-                          ->exists();
+        $notification = Thongbao::where('nguoi_nhan_id', Auth::id())
+                          ->where('bai_kiem_tra_id', $id)
+                          ->first();
 
-        if (!$invited) {
+        if (!$notification) {
             abort(403, 'Bạn không được mời làm bài kiểm tra này');
         }
 
@@ -146,12 +147,29 @@ class TestController extends Controller
             return redirect()->route('user.test.result', $id);
         }
 
-        return view('user.test.show', compact('test'));
+        // Lấy don_ung_tuyen_id từ đơn ứng tuyển
+        $donUngTuyenId = Donungtuyen::where('ung_vien_id', Auth::id())
+                                   ->where('nha_tuyen_dung_id', $test->nguoi_tao_id)
+                                   ->where('trang_thai', 'da_duyet') // Chỉ lấy đơn đã được duyệt
+                                   ->latest() // Lấy đơn mới nhất
+                                   ->value('id');
+
+        if (!$donUngTuyenId) {
+            abort(403, 'Không tìm thấy thông tin đơn ứng tuyển hoặc đơn chưa được duyệt');
+        }
+
+        return view('user.test.show', compact('test', 'donUngTuyenId'));
     }
 
     public function submitTest(Request $request, $id)
     {
         $test = Baikiemtra::findOrFail($id);
+        
+        // Validate don_ung_tuyen_id
+        if (!$request->has('don_ung_tuyen_id')) {
+            abort(400, 'Thiếu thông tin đơn ứng tuyển');
+        }
+
         $score = 0;
         
         // Chấm điểm
@@ -168,7 +186,7 @@ class TestController extends Controller
             'bai_kiem_tra_id' => $id,
             'diem_so' => round($score, 2),
             'ngay_lam' => now(),
-            'dap_an' => json_encode($request->answers)
+            'don_ung_tuyen_id' => $request->don_ung_tuyen_id
         ]);
 
         // Gửi thông báo
@@ -177,6 +195,7 @@ class TestController extends Controller
             'noi_dung' => "Bạn đã hoàn thành bài kiểm tra với số điểm: {$result->diem_so}",
             'trang_thai' => 'chua_doc',
             'thoi_gian_gui' => now(),
+            'bai_kiem_tra_id' => $id
         ]);
 
         return redirect()->route('user.test.result', $id)

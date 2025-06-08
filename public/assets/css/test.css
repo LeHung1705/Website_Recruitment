@@ -1,10 +1,14 @@
+.sidebar {
+    margin-bottom: 70px;
+ }
+ 
 /* Common styles */
 .card {
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    width: 80%;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 .card-header {
@@ -26,6 +30,7 @@
 
 .card-body {
     padding: 1.5rem;
+    position: relative;
 }
 
 .form-group {
@@ -115,6 +120,7 @@
     border-radius: 4px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
+    background-color: white;
 }
 
 .question-block h5 {
@@ -178,48 +184,96 @@
     font-size: 1.2rem;
     font-weight: bold;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 }
 
-/* Notification styles */
-.notification-list {
+/* Navigation tabs */
+.nav-tabs {
+    border-bottom: 1px solid #dee2e6;
+    margin-bottom: 1.5rem;
+}
+
+.nav-tabs .nav-item {
+    margin-bottom: 15px;
+}
+
+.nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    padding: 0.75rem 1.5rem;
+    color: #6c757d;
+    text-decoration: none;
+}
+
+.nav-tabs .nav-link:hover {
+    border-color: #e9ecef #e9ecef #dee2e6;
+    color: #2457A6;
+}
+
+.nav-tabs .nav-link.active {
+    color: #2457A6;
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
     list-style: none;
     padding: 0;
+    margin-top: 1.5rem;
 }
 
-.notification-item {
-    padding: 1rem;
-    border-bottom: 1px solid #e9ecef;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.pagination .page-item {
+    margin: 0 0.25rem;
 }
 
-.notification-item:last-child {
-    border-bottom: none;
+.pagination .page-link {
+    padding: 0.5rem 1rem;
+    border: 1px solid #dee2e6;
+    color: #2457A6;
+    background-color: white;
+    text-decoration: none;
+    border-radius: 4px;
 }
 
-.notification-content {
-    flex: 1;
+.pagination .page-link:hover {
+    background-color: #e9ecef;
+    border-color: #2457A6;
 }
 
-.notification-time {
-    color: #6c757d;
-    font-size: 0.875rem;
-    margin-left: 1rem;
-}
-
-.notification-unread {
-    background-color: #f8f9fa;
-}
-
-.notification-unread::before {
-    content: "";
-    display: inline-block;
-    width: 8px;
-    height: 8px;
+.pagination .active .page-link {
     background-color: #2457A6;
-    border-radius: 50%;
-    margin-right: 1rem;
+    color: white;
+    border-color: #2457A6;
+}
+
+.pagination .disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: #e9ecef;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .card {
+        margin: 10px 0;
+    }
+
+    .timer {
+        position: sticky;
+        top: 0;
+        right: 0;
+        width: 100%;
+        border-radius: 0;
+    }
 }
 
 /* Results table */
@@ -304,46 +358,6 @@
     color: #495057;
 }
 
-/* Pagination styles for all-results */
-.pagination {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    padding: 1rem 0;
-    margin-top: 1.5rem;
-}
-
-.pagination li {
-    margin: 0 0.25rem;
-}
-
-.pagination .page-link {
-    padding: 0.5rem 1rem;
-    border: 1px solid #dee2e6;
-    color: #2457A6;
-    background-color: white;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-}
-
-.pagination .page-link:hover {
-    background-color: #e9ecef;
-    border-color: #2457A6;
-}
-
-.pagination .active .page-link {
-    background-color: #2457A6;
-    color: white;
-    border-color: #2457A6;
-}
-
-.pagination .disabled .page-link {
-    color: #6c757d;
-    pointer-events: none;
-    background-color: #e9ecef;
-} 
-
 /* Test Create Form Styles */
 .test-card {
     background: white;
@@ -379,13 +393,6 @@
     margin-bottom: 1.5rem;
 }
 
-.form-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    color: #333;
-}
-
 .form-input {
     width: 100%;
     padding: 0.75rem;
@@ -404,14 +411,6 @@
 textarea.form-input {
     min-height: 100px;
     resize: vertical;
-}
-
-.question-block {
-    background: #f8f9fa;
-    border: 1px solid #e9ecef;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
 }
 
 .question-title {
@@ -433,33 +432,6 @@ textarea.form-input {
     display: flex;
     gap: 1rem;
     margin-top: 2rem;
-}
-
-.btn-primary, .btn-secondary {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.btn-primary {
-    background-color: #2457A6;
-    color: white;
-}
-
-.btn-primary:hover {
-    background-color: #1a4580;
-}
-
-.btn-secondary {
-    background-color: #6c757d;
-    color: white;
-}
-
-.btn-secondary:hover {
-    background-color: #5a6268;
 }
 
 /* Error states */

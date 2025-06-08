@@ -14,6 +14,8 @@ return new class extends Migration
             $table->text('noi_dung');
             $table->enum('trang_thai', ['da_doc', 'chua_doc'])->default('chua_doc');
             $table->dateTime('thoi_gian_gui');
+            $table->foreignId('bai_kiem_tra_id')->constrained('baikiemtra')->onDelete('cascade');
+            $table->string('link')->nullable();
             $table->timestamps();
         });
     }

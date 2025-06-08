@@ -5,24 +5,17 @@
 @endpush
 
 @section('content')
-    <div class="card">
-        <div class="card-header">
+    <div class="test-card">
+        <div class="test-card-header">
             <h4>Tất cả kết quả bài kiểm tra</h4>
         </div>
-        <div class="card-body">
-            <div class="all-results-container">
-    <div class="all-results-header">
-        <h2>Tất cả kết quả bài kiểm tra</h2>
-    </div>
+        <div class="test-card-body">
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    <div class="card">
-        <div class="card-body">
             <div class="table-responsive">
                 <table class="table all-results-table">
                     <thead>
@@ -39,7 +32,7 @@
                                 <td class="result-user">{{ $result->nguoidung->name }}</td>
                                 <td class="result-test-type">{{ $result->baikiemtra->loai_bai }}</td>
                                 <td class="result-score">{{ $result->diem_so }}</td>
-                                <td class="result-date">{{ $result->ngay_lam->format('d/m/Y H:i') }}</td>
+                                <td class="result-date">{{ \Carbon\Carbon::parse($result->ngay_lam)->format('d/m/Y H:i') }}</td>
                             </tr>
                         @empty
                             <tr>
@@ -50,9 +43,9 @@
                 </table>
             </div>
 
-            {{ $results->links() }}
+            <div class="mt-4">
+                {{ $results->links() }}
             </div>
-        </div>
         </div>
     </div>
 @endsection 

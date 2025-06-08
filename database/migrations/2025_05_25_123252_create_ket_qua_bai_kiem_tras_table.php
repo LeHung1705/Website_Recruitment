@@ -14,7 +14,7 @@ return new class extends Migration
             $table->foreignId('bai_kiem_tra_id')->constrained('baikiemtra')->onDelete('cascade');
             $table->foreignId('don_ung_tuyen_id')->constrained('donungtuyen')->onDelete('cascade');
             $table->integer('diem_so');
-            $table->date('ngay_lam');
+            $table->dateTime('ngay_lam');
             $table->timestamps();
         });
     }
