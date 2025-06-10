@@ -102,7 +102,7 @@ class InterviewController extends Controller
     public function notifications()
     {
         $notifications = ThongBao::where('nguoi_nhan_id', Auth::id())
-            ->whereIn('loai_thong_bao', ['phong_van', 'ket_qua_phong_van'])
+            ->whereIn('loai_thong_bao', ['phong_van'])
             ->with(['phongvan' => function($query) {
                 $query->with(['donungtuyen' => function($q) {
                     $q->with(['tintuyendung.nhatuyendung']);
