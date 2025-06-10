@@ -105,7 +105,8 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('user.test.result', $result->bai_kiem_tra_id) }}" 
-                                       class="btn btn-primary">
+                                       class="btn btn-primary"
+                                       style="text-decoration: none;">
                                         Xem chi tiết
                                     </a>
                                 </td>
