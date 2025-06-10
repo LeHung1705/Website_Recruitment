@@ -1,32 +1,9 @@
 @extends('layouts.app')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
-<style>
-.interview-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-.interview-status {
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 0.9em;
-}
-.status-cho_xac_nhan {
-    background-color: #fef3c7;
-    color: #92400e;
-}
-.status-da_xac_nhan {
-    background-color: #dcfce7;
-    color: #166534;
-}
-.status-da_hoan_thanh {
-    background-color: #dbeafe;
-    color: #1e40af;
-}
-</style>
+    <link rel="stylesheet" href="{{ asset('assets/css/interview.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
+
 @endpush
 
 @section('content')
@@ -90,13 +67,13 @@
             </div>
             <div class="card-body">
                 @if(session('success'))
-                    <div class="alert alert-success">
+                    <div class="alert alert-success" style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 10px; border-radius: 4px;">
                         {{ session('success') }}
                     </div>
                 @endif
 
                 @if(session('error'))
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 10px; border-radius: 4px;">
                         {{ session('error') }}
                     </div>
                 @endif
@@ -109,7 +86,7 @@
                         <div class="d-flex justify-content-between align-items-start mb-3">
                             <div>
                                 @if($notification->phongvan && $notification->phongvan->donungtuyen && $notification->phongvan->donungtuyen->tintuyendung)
-                                    <h5 class="mb-1">{{ $notification->phongvan->donungtuyen->tintuyendung->tieu_de }}</h5>
+                                    <h4 class="mb-1">{{ $notification->phongvan->donungtuyen->tintuyendung->tieu_de }}</h4>
                                     <p class="text-muted mb-0">
                                         <i class="fas fa-building"></i> 
                                         @if($notification->phongvan->donungtuyen->tintuyendung->nhatuyendung)
@@ -151,6 +128,17 @@
                                         <i class="fas fa-video"></i> 
                                         Hình thức: {{ ucfirst($notification->phongvan->hinh_thuc) }}
                                     </p>
+                                    @if($notification->phongvan->hinh_thuc == 'offline')
+                                        <p class="mb-1">
+                                            <i class="fas fa-map-marker-alt"></i> 
+                                            Địa điểm: Tầng 82, Toà nhà Landmark 81, đường Lê Văn Lương, phường Tân Định, quận 1, TP.HCM
+                                        </p>
+                                    @else
+                                        <p class="mb-1">
+                                            <i class="fas fa-video"></i> 
+                                            Truy cập: https://meet.jit.si/TraiDepBanHangTuyenDung
+                                        </p>
+                                    @endif
                                 </div>
                                 <div class="col-md-6 text-md-end mt-3 mt-md-0">
                                     @switch($notification->phongvan->trang_thai)
@@ -163,7 +151,7 @@
                                             </form>
                                             @break
                                         @case('da_xac_nhan')
-                                            <a href="{{ route('user.interview.show', $notification->phongvan->id) }}" 
+                                            <a href="#{{--{{ route('user.interview.show', $notification->phongvan->id) }}--}}" 
                                                class="btn btn-info">
                                                 <i class="fas fa-info-circle"></i> Xem chi tiết
                                             </a>

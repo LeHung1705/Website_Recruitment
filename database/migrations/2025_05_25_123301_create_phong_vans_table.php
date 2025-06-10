@@ -14,7 +14,7 @@ return new class extends Migration
             $table->foreignId('don_ung_tuyen_id')->constrained('donungtuyen')->onDelete('cascade');
             $table->dateTime('thoi_gian');
             $table->string('hinh_thuc');
-            $table->enum('trang_thai', ['cho_xac_nhan', 'da_xac_nhan'])->default('cho_xac_nhan');
+            $table->enum('trang_thai', ['cho_xac_nhan', 'da_xac_nhan', 'da_hoan_thanh'])->default('cho_xac_nhan');
             $table->timestamps();
         });
     }

@@ -21,7 +21,7 @@
     <div class="job-detail-container">
         <span style="font-family: 'Playfair Display', serif; font-weight: bold; opacity: 50%; font-size: 20px;">{{ strtoupper($job->nganh_nghe) }}</span>
         <div class="job-detail">
-            <h2 class="company-name" style="margin-bottom: 5px;">{{ $job->user->company_name ?? 'CÔNG TY CHƯA CẬP NHẬT' }}</h2>
+            <h2 class="company-name" style="margin-bottom: 5px;">{{ $job->nguoidung->name ?? 'CÔNG TY CHƯA CẬP NHẬT' }}</h2>
             <hr style="border: 1px solid #e0e0e0; margin: 20px 0;">
             <div class="job-detail-item-1">
                 <div class="job-name">

@@ -65,7 +65,7 @@
                     </a>
                 </li>
                 <li class="nav-menu-item">
-                    <a href="#" class="nav-menu-link {{ request()->routeIs('user.interviews') ? 'active' : '' }}">
+                    <a href="{{ route('user.interview.notifications') }}" class="nav-menu-link {{ request()->routeIs('user.interview.*') ? 'active' : '' }}">
                         <i class="fas fa-calendar-alt nav-menu-icon"></i>
                         Lịch phỏng vấn
                     </a>
@@ -132,7 +132,8 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('jobs.show', $application->tin_tuyen_dung_id) }}" 
-                                           class="btn btn-primary btn-sm">
+                                           class="btn btn-primary btn-sm"
+                                           style="text-decoration: none;">
                                             Xem tin tuyển dụng
                                         </a>
                                     </td>

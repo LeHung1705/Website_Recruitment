@@ -54,7 +54,7 @@ class InterviewController extends Controller
     // Admin: Hiển thị form nhập kết quả
     public function showResultForm($id)
     {
-        $interview = PhongVan::with(['donungtuyen.user'])->findOrFail($id);
+        $interview = PhongVan::with(['donungtuyen.ungvien'])->findOrFail($id);
         return view('admin.interview.result', compact('interview'));
     }
 
@@ -67,7 +67,7 @@ class InterviewController extends Controller
             'ket_qua' => 'required|in:dau,rot'
         ]);
 
-        $phongVan = PhongVan::with('donungtuyen.user')->findOrFail($id);
+        $phongVan = PhongVan::with('donungtuyen.ungvien')->findOrFail($id);
         
         $ketQua = KetQuaPhongVan::create([
             'phong_van_id' => $id,
@@ -81,9 +81,12 @@ class InterviewController extends Controller
             $phongVan->donungtuyen->update(['trang_thai' => 'da_tu_choi']);
         }
 
+        // Cập nhật trạng thái phỏng vấn
+        $phongVan->update(['trang_thai' => 'da_hoan_thanh']);
+
         // Tạo thông báo kết quả cho ứng viên
         ThongBao::create([
-            'nguoi_nhan_id' => $phongVan->donungtuyen->user_id,
+            'nguoi_nhan_id' => $phongVan->donungtuyen->ungvien->id,
             'noi_dung' => "Kết quả: {$request->ket_qua} (Điểm: {$request->diem_so}, Nhận xét: {$request->nhan_xet})",
             'trang_thai' => 'chua_doc',
             'thoi_gian_gui' => now(),
@@ -91,7 +94,8 @@ class InterviewController extends Controller
             'link' => route('user.interview.result', ['id' => $id])
         ]);
 
-        return response()->json(['message' => 'Đã lưu kết quả phỏng vấn']);
+        return redirect()->route('admin.interview.list')
+            ->with('success', 'Đã lưu kết quả phỏng vấn thành công');
     }
 
     // User: Lấy danh sách thông báo
@@ -126,15 +130,15 @@ class InterviewController extends Controller
     // User: Xem chi tiết phỏng vấn
     public function show($id)
     {
-        $interview = PhongVan::with(['nguoidung:id,ho_ten'])->findOrFail($id);
+        $interview = PhongVan::with(['nguoidung:id,name'])->findOrFail($id);
 
         // Kiểm tra quyền truy cập
-        if ($interview->donungtuyen->user_id !== Auth::id()) {
+        if ($interview->donungtuyen->ungvien->id !== Auth::id()) {
             return redirect()->route('user.interview.notifications')
                 ->with('error', 'Bạn không có quyền truy cập phỏng vấn này');
         }
 
-        return view('user.interview.confirm', compact('interview'));
+        return view('user.interview.detail', compact('interview'));
     }
 
     // User: Xác nhận phỏng vấn
@@ -171,7 +175,7 @@ class InterviewController extends Controller
         $ketQua = KetQuaPhongVan::with(['phongvan.donungtuyen'])
             ->whereHas('phongvan', function($query) {
                 $query->whereHas('donungtuyen', function($q) {
-                    $q->where('user_id', Auth::id());
+                $q->where('ung_vien_id', Auth::id());
                 });
             })
             ->where('phong_van_id', $id)
