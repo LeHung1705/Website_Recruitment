@@ -70,7 +70,7 @@
             </div>
 
             <div class="mt-4">
-                <a href="{{ route('user.test.history') }}" class="btn btn-secondary">
+                <a href="{{ route('user.test.history') }}" class="btn btn-secondary" style="text-decoration: none;">
                     Quay lại lịch sử
                 </a>
             </div>

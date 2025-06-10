@@ -54,6 +54,23 @@
             </a>
             
             <div class="nav-item-dropdown">
+                <a href="#" class="nav-item {{ request()->routeIs('admin.interview.*') ? 'active' : '' }}">
+                    <i class="bi bi-calendar-event"></i> Quản lý phỏng vấn
+                    <i class="bi bi-chevron-right" style="float: right; margin: 3px;"></i>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="{{ route('admin.interview.list') }}" 
+                        class="dropdown-item {{ request()->routeIs('admin.interview.list') ? 'active' : '' }}">
+                        <i class="bi bi-list-ul"></i> Danh sách phỏng vấn
+                    </a>
+                    <a href="{{ route('admin.interview.results') }}" 
+                        class="dropdown-item {{ request()->routeIs('admin.interview.results') ? 'active' : '' }}">
+                        <i class="bi bi-clipboard-check"></i> Kết quả phỏng vấn
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-item-dropdown">
                 <a href="#" class="nav-item {{ request()->routeIs('admin.test.*') ? 'active' : '' }}">
                     <i class="bi bi-file-earmark-text"></i> Quản lý bài kiểm tra
                     <i class="bi bi-chevron-right" style="float: right; margin: 3px;"></i>
@@ -100,6 +117,10 @@
     </footer>
     @stack('scripts')
     <script src="{{ asset('assets/js/admin.js') }}"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 

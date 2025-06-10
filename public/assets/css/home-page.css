@@ -1,60 +1,45 @@
-
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #F5F7FA;
+    margin: 0;
+    padding: 0;
+}
 
 .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 30px 0;
 }
-
-.search-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 3px;
-    margin-top: 10px;
-    height: 25px;
-    width: 80%;
-    border: solid 2px #2457A6;
-    border-radius: 25px;
-    gap: 5px;
-}
-
-
-.search-box input {
-    width: 97%;
-    height: 100%;
-    border: none;
-    border-left: #2457A6 solid 2px;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-}
-
-.search-box input:focus {
-    outline: none;
-}
-
 
 
 .job-list-container {
     display: flex;
     flex-direction: column;
     width: 90%;
-    
-    margin-top: 30px;
-    gap: 20px;
+    margin-top: 40px;
+    gap: 30px;
     min-width: 750px;
 }
 
 .job-list-title {
-    font-size: 30px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #1a1a1a;
+    text-align: center;
 }
 
 .job-list {
     display: flex;
-    
     justify-content: space-between;
-    
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.container {
+    margin: 0;
+    padding: 0;
 }
 
 .job-list-item {
@@ -62,49 +47,56 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 300px;
+    height: 320px;
     width: 30%;
-    padding-top: 30px;
-    padding-bottom: 5px;
-    gap: 30px;
+    padding: 20px;
+    gap: 20px;
     border-radius: 15px;
-    background-color: #EFEBEB;
-    cursor: pointer;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .job-list-item:hover {
-    border: #2457A6 solid 1px;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    border: 1px solid #2457A6;
 }
 
 .company-name {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
-    width: 80%;
+    color: #2457A6;
+    text-align: center;
+    width: 90%;
 }
 
 .attribute {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    width: 80%;
+    gap: 15px;
+    width: 90%;
 }
 
 .attribute-item {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
+    font-size: 15px;
+    color: #333;
 }
 
 .attribute-item svg {
     width: 20px;
     height: 20px;
+    fill: #2457A6;
 }
 
 .countdown-timer {
     text-align: right;
     width: 90%;
-    border-top: #2457A6 solid 1px;
-    padding: 5px;
+    border-top: 1px solid #2457A6;
+    padding-top: 10px;
     font-size: 14px;
     color: #2457A6;
 }
@@ -113,16 +105,189 @@
     background-color: #2457A6;
     border: none;
     cursor: pointer;
-    width: 300px;
-    height: 50px;
+    width: 280px;
+    height: 48px;
     color: white;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
     margin-top: 20px;
     margin-bottom: 20px;
+    transition: background-color 0.3s ease;
 }
 
 .btn-login-now:hover {
     background-color: #084aac;
+}
+/* HERO SECTION */
+.hero-section {
+    background: linear-gradient(135deg, #ff0000, #000000);
+    color: #fff;
+    padding: 80px 20px 60px;
+    width: 100%;
+    text-align: center;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.hero-content h1 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    opacity: 0.95;
+}
+
+.search-box {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+}
+
+.search-input {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 25px;
+    padding: 8px 15px;
+    gap: 10px;
+    width: 250px;
+    color: #2457A6;
+}
+
+.search-input input,
+.search-input select {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+    background: transparent;
+    color: #2457A6;
+}
+
+.search-button {
+    background-color: #fff;
+    color: #2457A6;
+    border: none;
+    padding: 10px 25px;
+    font-size: 16px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.search-button:hover {
+    background-color: #e6f0ff;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.stat-icon i {
+    font-size: 32px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 50%;
+}
+
+.stat-number {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.stat-label {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* FEATURED CATEGORIES */
+.featured-categories {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.featured-categories h2 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #2457A6;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.category-card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 25px;
+    text-decoration: none;
+    color: #333;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.category-icon {
+    background-color: #e0ecff;
+    color: #2457A6;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    margin: 0 auto 15px;
+}
+
+.category-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.job-count {
+    font-size: 14px;
+    color: #666;
 }

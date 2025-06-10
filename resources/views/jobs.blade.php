@@ -9,17 +9,24 @@
         <img src="{{ asset('assets/images/banner.jpg') }}" alt="banner" class="banner">
         <div class="search-overlay">
             <form action="{{ route('jobs.search') }}" method="GET" class="search-filters">
-                <div class="search-input">
-                    <img src="{{ asset('assets/images/glass.png') }}" alt="search">
-                    <input type="text" name="keyword" placeholder="Tìm kiếm công việc..." value="{{ request('keyword') }}">
-                </div>
-                <div class="location-select">
-                    <select name="thanh_pho" id="thanh_pho">
-                        <option value="">Tất cả thành phố</option>
-                        <option value="TP.HCM" {{ request('thanh_pho') == 'TP.HCM' ? 'selected' : '' }}>TP. Hồ Chí Minh</option>
-                        <option value="TP.Hà Nội" {{ request('thanh_pho') == 'TP.Hà Nội' ? 'selected' : '' }}>TP. Hà Nội</option>
-                        <option value="TP.Đà Nẵng" {{ request('thanh_pho') == 'TP.Đà Nẵng' ? 'selected' : '' }}>TP. Đà Nẵng</option>
-                    </select>
+                <div class="search-group">
+                    <div class="search-input">
+                        <i class="fas fa-search"></i>
+                        <input type="text" name="keyword" placeholder="Tìm kiếm công việc..." value="{{ request('keyword') }}">
+                    </div>
+                    <div class="location-select">
+                        <i class="fas fa-location-dot"></i>
+                        <select name="thanh_pho" id="thanh_pho">
+                            <option value="">Tất cả thành phố</option>
+                            <option value="TP.HCM" {{ request('thanh_pho') == 'TP.HCM' ? 'selected' : '' }}>TP. Hồ Chí Minh</option>
+                            <option value="TP.Hà Nội" {{ request('thanh_pho') == 'TP.Hà Nội' ? 'selected' : '' }}>TP. Hà Nội</option>
+                            <option value="TP.Đà Nẵng" {{ request('thanh_pho') == 'TP.Đà Nẵng' ? 'selected' : '' }}>TP. Đà Nẵng</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="search-button">
+                        <i class="fas fa-search"></i>
+                        Tìm kiếm
+                    </button>
                 </div>
             </form>
         </div>

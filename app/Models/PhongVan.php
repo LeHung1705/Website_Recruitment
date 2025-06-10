@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PhongVan extends Model
 {
     protected $table = 'phongvan';
-    protected $fillable = ['nguoi_to_chuc_id', 'don_ung_tuyen_id', 'thoi_gian', 'hinh_thuc'];
+    protected $fillable = ['nguoi_to_chuc_id', 'don_ung_tuyen_id', 'thoi_gian', 'hinh_thuc', 'trang_thai'];
 
     // N:1 với NGUOIDUNG
     public function nguoidung()

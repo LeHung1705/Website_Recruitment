@@ -25,7 +25,8 @@
                 <th>Ngày ứng tuyển</th>
                 <th>Trạng thái</th>
                 <th>Hồ sơ</th>
-                <th>Thao tác</th>
+                <th>Đánh giá</th>
+                <th>Phỏng vấn</th>
             </tr>
         </thead>
         <tbody>
@@ -68,9 +69,39 @@
                         </button>
                     </form>
                 </td>
+                <td>
+                    @if($application->trang_thai === 'phu_hop')
+                        @if($application->phongvan)
+                            @switch($application->phongvan->trang_thai)
+                                @case('cho_xac_nhan')
+                                    <span class="badge bg-warning">Chờ xác nhận</span>
+                                    @break
+                                @case('da_xac_nhan')
+                                    <a href="{{ route('admin.interview.result.form', $application->phongvan->id) }}" 
+                                       class="btn btn-sm btn-info">
+                                        <i class="bi bi-pencil"></i> Nhập kết quả
+                                    </a>
+                                    @break
+                                @default
+                                    <button type="button" 
+                                            onclick="window.location.href='{{ route('interview.invite', $application->id) }}'"
+                                            class="btn btn-sm btn-primary">
+                                        <i class="bi bi-calendar-plus"></i> Mời phỏng vấn
+                                    </button>
+                            @endswitch
+                        @else
+                            <button type="button" 
+                                    onclick="window.location.href='{{ route('interview.invite', $application->id) }}'"
+                                    class="btn btn-sm btn-primary">
+                                <i class="bi bi-calendar-plus"></i> Mời phỏng vấn
+                            </button>
+                        @endif
+                    @endif
+                </td>
             </tr>
             @endforeach
         </tbody>
     </table>
 </div>
 @endsection
+

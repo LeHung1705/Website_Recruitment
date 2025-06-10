@@ -37,7 +37,7 @@
                     </a>
                 </li>
                 <li class="nav-menu-item">
-                    <a href="#" class="nav-menu-link {{ request()->routeIs('user.interviews') ? 'active' : '' }}">
+                    <a href="{{ route('user.interview.notifications') }}" class="nav-menu-link {{ request()->routeIs('user.interview.*') ? 'active' : '' }}">
                         <i class="fas fa-calendar-alt nav-menu-icon"></i>
                         Lịch phỏng vấn
                     </a>
