@@ -95,9 +95,6 @@
                                             Công ty không xác định
                                         @endif
                                     </p>
-                                @else
-                                    <h5 class="mb-1">Thông báo phỏng vấn</h5>
-                                    <p class="text-muted mb-0">{{ $notification->noi_dung }}</p>
                                 @endif
                             </div>
                             @if($notification->phongvan)
@@ -164,10 +161,6 @@
                                             @break
                                     @endswitch
                                 </div>
-                            </div>
-                        @else
-                            <div class="alert alert-info">
-                                {{ $notification->noi_dung }}
                             </div>
                         @endif
                     </div>
