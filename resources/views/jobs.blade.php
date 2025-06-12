@@ -36,7 +36,7 @@
         <div class="jobs-grid">
             @foreach($jobs as $job)
             <div class="job-card" onclick="window.location.href='{{ route('jobs.show', $job->id) }}'">
-                <div class="company-name">{{ $job->user->company_name ?? 'CÔNG TY CHƯA CẬP NHẬT' }}</div>
+                <div class="company-name">{{ $job->nguoidung->name ?? 'CÔNG TY CHƯA CẬP NHẬT' }}</div>
                 <div class="job-title">{{ $job->tieu_de }}</div>
                 <div class="job-attributes">
                     <div class="job-attribute">
