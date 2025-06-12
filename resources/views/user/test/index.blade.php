@@ -97,7 +97,7 @@
                                 <td>30 phút</td>
                                 <td>{{ count($questions) }}</td>
                                 <td>
-                                    <a href="{{ $notification->link }}" 
+                                    <a href="{{ route('user.test.show', $test->id) }}" 
                                        class="btn btn-primary"
                                        style="text-decoration: none;"
                                        onclick="return confirm('Bạn có chắc muốn bắt đầu làm bài? Thời gian sẽ bắt đầu tính ngay khi bạn vào làm bài.')">

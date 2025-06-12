@@ -65,7 +65,7 @@
                 <h4>Bài kiểm tra</h4>
             </div>
             <div class="card-body">
-                <div class="timer" id="timer">Thời gian: 30:00</div>
+                <div class="timer" id="timer" style="margin-top: 80px;">Thời gian: 30:00</div>
 
                 <form action="{{ route('user.test.submit', $test->id) }}" method="POST" id="testForm">
                     @csrf

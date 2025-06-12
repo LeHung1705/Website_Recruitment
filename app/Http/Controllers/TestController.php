@@ -147,16 +147,11 @@ class TestController extends Controller
             return redirect()->route('user.test.result', $id);
         }
 
-        // Lấy don_ung_tuyen_id từ đơn ứng tuyển
+        // Lấy don_ung_tuyen_id từ đơn ứng tuyển nếu có
         $donUngTuyenId = Donungtuyen::where('ung_vien_id', Auth::id())
                                    ->where('nha_tuyen_dung_id', $test->nguoi_tao_id)
-                                   ->where('trang_thai', 'da_duyet') // Chỉ lấy đơn đã được duyệt
                                    ->latest() // Lấy đơn mới nhất
                                    ->value('id');
-
-        if (!$donUngTuyenId) {
-            abort(403, 'Không tìm thấy thông tin đơn ứng tuyển hoặc đơn chưa được duyệt');
-        }
 
         return view('user.test.show', compact('test', 'donUngTuyenId'));
     }
@@ -165,11 +160,6 @@ class TestController extends Controller
     {
         $test = Baikiemtra::findOrFail($id);
         
-        // Validate don_ung_tuyen_id
-        if (!$request->has('don_ung_tuyen_id')) {
-            abort(400, 'Thiếu thông tin đơn ứng tuyển');
-        }
-
         $score = 0;
         
         // Chấm điểm
@@ -186,7 +176,7 @@ class TestController extends Controller
             'bai_kiem_tra_id' => $id,
             'diem_so' => round($score, 2),
             'ngay_lam' => now(),
-            'don_ung_tuyen_id' => $request->don_ung_tuyen_id
+            'don_ung_tuyen_id' => $request->don_ung_tuyen_id ?? null
         ]);
 
         // Gửi thông báo
