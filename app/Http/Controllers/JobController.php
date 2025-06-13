@@ -48,4 +48,29 @@ class JobController extends Controller
 
         return redirect()->route('admin.jobs')->with('success', 'Đã thêm tin tuyển dụng thành công!');
     }
+
+    public function edit_job_view($id)
+    {
+        $job = TinTuyenDung::findOrFail($id);
+        return view('admin.jobs.edit-job', compact('job'));
+    }
+
+    public function edit_job(Request $request, $id){
+        $job = TinTuyenDung::findOrFail($id);
+        $job->tieu_de = $request->tieu_de;
+        $job->mo_ta = $request->mo_ta;
+        $job->nganh_nghe = $request->nganh_nghe;
+        $job->loai_cong_viec = $request->loai_cong_viec;
+        $job->dia_diem = $request->dia_diem;
+        $job->luong = $request->luong;
+        $job->yeu_cau = $request->yeu_cau;
+        $job->save();
+        return redirect()->route('admin.jobs')->with('success', 'Đã cập nhật tin tuyển dụng thành công!');  
+    }
+
+    public function delete_job($id){
+        $job = TinTuyenDung::findOrFail($id);
+        $job->delete();
+        return redirect()->route('admin.jobs')->with('success', 'Đã xóa tin tuyển dụng thành công!');
+    }
 }
