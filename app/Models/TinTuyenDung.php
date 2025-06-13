@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tintuyendung extends Model
 {
+    public $timestamps = false;
     protected $table = 'tintuyendung';
     protected $fillable = ['nguoi_dang_id', 'tieu_de', 'mo_ta', 'nganh_nghe', 'loai_cong_viec', 'dia_diem', 'luong', 'trang_thai'];
 

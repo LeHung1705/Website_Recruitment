@@ -31,6 +31,7 @@ class JobController extends Controller
             'loai_cong_viec' => 'required|string|max:255',
             'dia_diem' => 'required|string|max:255',
             'luong' => 'required|numeric|min:0',
+            'yeu_cau' => 'required|string',
         ]);
 
         // Create new job posting
@@ -42,6 +43,7 @@ class JobController extends Controller
         $job->loai_cong_viec = $validatedData['loai_cong_viec'];
         $job->dia_diem = $validatedData['dia_diem'];
         $job->luong = $validatedData['luong'];
+        $job->yeu_cau = $validatedData['yeu_cau'];
         $job->save();
 
         return redirect()->route('admin.jobs')->with('success', 'Đã thêm tin tuyển dụng thành công!');
