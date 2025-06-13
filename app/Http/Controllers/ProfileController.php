@@ -32,8 +32,15 @@ class ProfileController extends Controller
 
         if($request->hasFile('cv_path')){
             $file = $request->file('cv_path');
-            $path = $file->store('cv', 'public');
-            $profile->cv_path = $path;
+            
+            // Tạo tên file unique để tránh trùng lặp
+            $fileName = time() . '_' . Auth::id() . '_' . $file->getClientOriginalName();
+            
+            // Di chuyển file vào thư mục public/uploads
+            $file->move(public_path('uploads'), $fileName);
+            
+            // Lưu đường dẫn tương đối vào database
+            $profile->cv_path = 'uploads/' . $fileName;
             $profile->save();
         }
 

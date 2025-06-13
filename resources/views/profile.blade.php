@@ -123,7 +123,7 @@
                             @if($profile && $profile->cv_path)
                                 <div class="cv-preview">
                                     CV hiện tại: 
-                                    <a href="{{ Storage::url($profile->cv_path) }}" target="_blank">Xem CV</a>
+                                    <a href="{{ asset($profile->cv_path) }}" target="_blank">Xem CV</a>
                                 </div>
                             @endif
                         </div>

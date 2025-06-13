@@ -90,7 +90,7 @@
             <div class="profile-info">
                 <h5>CV</h5>
                 <div class="info-group">
-                    <a href="{{ Storage::url($user->hosocanhan->cv_path) }}" 
+                    <a href="{{ asset($user->hosocanhan->cv_path) }}" 
                        target="_blank"
                        class="btn btn-primary cv-download">
                         <i class="fas fa-download"></i> Tải xuống CV
