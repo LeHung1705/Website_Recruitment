@@ -46,9 +46,14 @@ Route::middleware(['auth'])->group(function(){
 //Route cua Admin
 Route::middleware(['auth', AuthAdmin::class])->group(function(){
     Route::get('/admin',[AdminController::class,'index'])->name('admin.index');
+
+    // Routes cho admin (ADM) - Quản lý tin tuyển dụng
     Route::get('/admin/jobs',[JobController::class,'index'])->name('admin.jobs');
     Route::get('/admin/add-job', [JobController::class, 'add_job_view'])->name('admin.add_job_view');
     Route::post('/admin/add-job', [JobController::class, 'add_job'])->name('admin.add_job');
+    Route::get('/admin/jobs/{job}/edit', [JobController::class, 'edit_job_view'])->name('admin.edit_job_view');
+    Route::put('/admin/jobs/{job}/edit', [JobController::class, 'edit_job'])->name('admin.edit_job');
+    Route::delete('/admin/jobs/{job}', [JobController::class, 'delete_job'])->name('admin.delete_job');
 
     // Routes cho admin (ADM) - Phỏng vấn
     Route::prefix('admin/interviews')->name('admin.interview.')->group(function () {
